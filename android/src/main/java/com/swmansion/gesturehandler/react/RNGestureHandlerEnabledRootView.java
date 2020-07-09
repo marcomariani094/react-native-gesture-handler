@@ -28,10 +28,15 @@ public class RNGestureHandlerEnabledRootView extends ReactRootView {
 
   @Override
   public boolean dispatchTouchEvent(MotionEvent ev) {
-    if (mGestureRootHelper != null && mGestureRootHelper.dispatchTouchEvent(ev)) {
-      return true;
+    try {
+      if (mGestureRootHelper != null && mGestureRootHelper.dispatchTouchEvent(ev)) {
+        return true;
+      }
+      return super.dispatchTouchEvent(ev);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
-    return super.dispatchTouchEvent(ev);
+    return false;
   }
 
   /**
