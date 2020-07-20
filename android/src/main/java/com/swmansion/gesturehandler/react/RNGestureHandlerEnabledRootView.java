@@ -32,7 +32,9 @@ public class RNGestureHandlerEnabledRootView extends ReactRootView {
       if (mGestureRootHelper != null && mGestureRootHelper.dispatchTouchEvent(ev)) {
         return true;
       }
-      return super.dispatchTouchEvent(ev);
+      if (super.dispatchTouchEvent(ev)) {
+        return true;
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
